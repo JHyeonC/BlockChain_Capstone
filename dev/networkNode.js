@@ -236,9 +236,15 @@ app.get('/consensus', function(req, res) {
 app.get('/block/:blockHash', function(req, res) { 
 	const blockHash = req.params.blockHash;
 	const correctBlock = bitcoin.getBlock(blockHash);
-	res.json({
-		block: correctBlock
-	});
+	if (correctBlock !== null) {
+		res.json({
+			block: correctBlock
+		});
+	} else {
+		res.status(404).json({
+			error: "Block not found"
+		});
+	}
 });
 
 
