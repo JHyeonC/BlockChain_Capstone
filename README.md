@@ -7,7 +7,7 @@
 lockchain.prototype.createNewTransaction = function(amount, sender, recipient) {
 	const senderBalance = this.getAddressData(sender).addressBalance;
 	if(amount > senderBalance) throw new Exception("잔고가 부족하여 거래할 수 없습니다.");
-.....
+	.....
 }
 ```
 ```
