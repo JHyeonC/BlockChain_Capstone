@@ -293,6 +293,13 @@ app.get('/block/:blockHash', function(req, res) {
 app.get('/transaction/:transactionId', function(req, res) {
 	const transactionId = req.params.transactionId;
 	const trasactionData = bitcoin.getTransaction(transactionId);
+
+	if(!trasactionData.transaction || !trasactionData.block){
+		res.status(400).json({
+			note: `${transactionId}의 transaction을 찾을 수 없습니다.`
+		});
+	}
+
 	res.json({
 		transaction: trasactionData.transaction,
 		block: trasactionData.block
