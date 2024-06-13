@@ -267,7 +267,8 @@ app.get('/consensus', function(req, res) {
 	})
 	.catch((error) => {
 		res.status(400).json({
-			note: "consensus 처리를 실패했습니다."
+			note: "consensus 처리를 실패했습니다.",
+			error: error
 		});
 	});
 });
