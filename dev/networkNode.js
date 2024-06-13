@@ -143,6 +143,11 @@ app.post('/receive-new-block', function(req, res) {
 // register a node and broadcast it the network
 app.post('/register-and-broadcast-node', function(req, res) {
 	const newNodeUrl = req.body.newNodeUrl;
+
+	if(!newNodeUrl){
+		return res.status(400).json({ note: "newNodeUrl의 값이 잘못되었습니다."});
+	}
+
 	if (bitcoin.networkNodes.indexOf(newNodeUrl) == -1) bitcoin.networkNodes.push(newNodeUrl);
 
 	const regNodesPromises = [];
