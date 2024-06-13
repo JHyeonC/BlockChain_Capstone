@@ -32,6 +32,12 @@ app.post('/transaction', function(req, res) {
 // broadcast transaction
 app.post('/transaction/broadcast', function(req, res) {
 	try{
+		const { amount, sender, recipient } = req.body;
+
+		if(!amount || !sender || !recipient) {
+			return res.status(400).json({ note : "입력값이 잘못되었습니다." });
+		}
+
 		const newTransaction = bitcoin. createNewTransaction(req.body.amount, req.body.sender, req.body.recipient);
 		bitcoin.addTransactionToPendingTransactions(newTransaction);
 
