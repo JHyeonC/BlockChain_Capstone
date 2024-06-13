@@ -190,8 +190,14 @@ app.post('/register-node', function(req, res) {
 	const newNodeUrl = req.body.newNodeUrl;
 	const nodeNotAlreadyPresent = bitcoin.networkNodes.indexOf(newNodeUrl) == -1;
 	const notCurrentNode = bitcoin.currentNodeUrl !== newNodeUrl;
-	if (nodeNotAlreadyPresent && notCurrentNode) bitcoin.networkNodes.push(newNodeUrl);
-	res.json({ note: 'New node registered successfully.' });
+	if (nodeNotAlreadyPresent && notCurrentNode) {
+		bitcoin.networkNodes.push(newNodeUrl);
+		res.json({ note: 'New node registered successfully.' });
+	}else {
+		res.status(400).json({
+			note: "등록할 node가 이미 존재하거나, 현재 노드입니다."
+		});
+	}
 });
 
 
