@@ -178,7 +178,7 @@ app.post('/register-and-broadcast-node', function(req, res) {
 	})
 	.catch((error) => {
 		res.status(400).json({
-			note: "새로운 node를 등록하고 broadcast 실패하였습니다.",
+			note: "새로운 node를 등록 및 broadcast 실패하였습니다.",
 			error: error
 		});
 	});
