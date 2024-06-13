@@ -175,6 +175,12 @@ app.post('/register-and-broadcast-node', function(req, res) {
 	})
 	.then(data => {
 		res.json({ note: 'New node registered with network successfully.' });
+	})
+	.catch((error) => {
+		res.status(400).json({
+			note: "새로운 node를 등록하고 broadcast 실패하였습니다.",
+			error: error
+		});
 	});
 });
 
