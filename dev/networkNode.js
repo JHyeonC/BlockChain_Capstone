@@ -107,6 +107,12 @@ app.get('/mine', function(req, res) {
 			note: "New block mined & broadcast successfully",
 			block: newBlock
 		});
+	})
+	.catch(error => {
+		res.status(400).json({
+			note: "새로운 block을 mined & broadcast하는데 실패했습니다.",
+			error: error
+		});
 	});
 });
 
