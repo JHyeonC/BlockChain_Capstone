@@ -283,7 +283,7 @@ app.get('/block/:blockHash', function(req, res) {
 		});
 	} else {
 		res.status(404).json({
-			error: "Block not found"
+			note: `${blockHash}의 block을 찾을 수 없습니다.`
 		});
 	}
 });
